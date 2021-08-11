@@ -44,7 +44,7 @@ var taskFormHandler = function(event) {
 };
 
 var completeEditTask = function (taskName, taskType, taskId) {
-    var taskSelected = document.querySelector(".task-item[data-task-id='" + task + "']");
+    var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
     // set new values
     taskSelected.querySelector("h3.task-name").textContent = taskName;
