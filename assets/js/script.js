@@ -85,22 +85,37 @@ var createTaskEl = function(taskDataObj) {
     
     listItemEl.appendChild(taskInfoEl);
 
+    
+    var taskActionsEl = createTaskActions(taskIdCounter);
+    listItemEl.appendChild(taskActionsEl);
+    
+    switch (taskDataObj.status) {
+    case "to do":
+    taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 0;
+    tasksToDoEl.append(listItemEl);
+    break;
+    case "in progress":
+    taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 1;
+    tasksInProgressEl.append(listItemEl);
+    break;
+    case "completed":
+    taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 2;
+    tasksCompletedEl.append(listItemEl);
+    break;
+    default:
+        console.log("Something went wrong!");
+    }
+                    
     taskDataObj.id = taskIdCounter;
 
     tasks.push(taskDataObj);
 
     saveTasks();
-
-    var taskActionsEl = createTaskActions(taskIdCounter);
-    listItemEl.appendChild(taskActionsEl);
-    
-    // add entire list item to list
-    tasksToDoEl.appendChild(listItemEl);
-
+                    
     // increase task counter for next unique id
     taskIdCounter++;
 };
-
+                
 var createTaskActions = function(taskId) {
     var actionContainerEl = document.createElement("div");
     actionContainerEl.className = "task-actions";
@@ -240,7 +255,7 @@ var loadTasks = function() {
     if (!savedTasks) {
         return false;
     }
-    
+    console.log("Saved tasks found!");
     // convert from string back into array
     savedTasks = JSON.parse(savedTasks);
 
