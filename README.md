@@ -1,5 +1,5 @@
 # taskinator
-A Kanban-style task management app that allows you to track your responsibilities through completion.
+A Kanban-style task management app that allows you to visually track your responsibilities through completion.
 
 ## Website
 https://sadboitay.github.io/taskinator/
